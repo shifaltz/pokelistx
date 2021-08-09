@@ -17,30 +17,31 @@ class BookTreinador extends StatefulWidget {
 class _BookTreinadorState extends State<BookTreinador> {
   @override
   Widget build(BuildContext context) {
-    String starterPokemon = widget._treinador.starterPokemon;
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,
-        backgroundColor:
-          starterPokemon == 'Squirtle' ? Colors.blue[500]
-            : starterPokemon == 'Charmander' ? Colors.orange[500]
-            : starterPokemon == 'Bulbasaur' ? Colors.green[500]
-            : Colors.transparent,
+        iconTheme: IconThemeData(
+          color: Colors.black, //change your color here
+        ),
+        backgroundColor: Colors.white,
         centerTitle: true,
         title: Row(
           children: [
             Container(
-              child: Text(widget._treinador.nome),
+              child: Text(widget._treinador.nome, style: TextStyle(color: Colors.black),),
             ),
             Spacer(),
-            Image.asset('assets/icons/icon_'+widget._treinador.starterPokemon+'.png', height: 40, width: 40,),
-
+            Image.asset(
+              'assets/icons/icon_' + widget._treinador.starterPokemon + '.png',
+              height: 40,
+              width: 40,
+            ),
           ],
         ),
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             InkWell(
@@ -48,17 +49,12 @@ class _BookTreinadorState extends State<BookTreinador> {
                 padding: const EdgeInsets.all(16.0),
                 child: Container(
                   decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('assets/images/back.png'),
-                      fit: BoxFit.cover,
-                    ),
-                      // gradient: LinearGradient(
-                      //   begin: Alignment.centerLeft,
-                      //   end: Alignment.centerRight,
-                      //   colors: [Colors.blue[700], Colors.blue[200]],
-                      // ),
+                      image: DecorationImage(
+                        image: AssetImage('assets/images/back.png'),
+                        fit: BoxFit.cover,
+                      ),
                       borderRadius: BorderRadius.all(Radius.circular(50))),
-                  height: 200,
+                  height: 250,
                   width: double.maxFinite,
                   child: Stack(
                     children: [
@@ -86,8 +82,12 @@ class _BookTreinadorState extends State<BookTreinador> {
                   ),
                 ),
               ),
-              onTap: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => ListaPokemons(widget._treinador)));
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            ListaPokemons(widget._treinador)));
               },
             ),
             InkWell(
@@ -96,11 +96,12 @@ class _BookTreinadorState extends State<BookTreinador> {
                 child: Container(
                   decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage('assets/images/background_pokemon.png'),
+                        image:
+                            AssetImage('assets/images/background_pokemon.png'),
                         fit: BoxFit.cover,
                       ),
                       borderRadius: BorderRadius.all(Radius.circular(50))),
-                  height: 200,
+                  height: 250,
                   width: double.maxFinite,
                   child: Stack(
                     children: [
@@ -128,9 +129,13 @@ class _BookTreinadorState extends State<BookTreinador> {
                   ),
                 ),
               ),
-              onTap: (){
+              onTap: () {
                 debugPrint(widget._treinador.toString());
-                Navigator.push(context, MaterialPageRoute(builder: (context) => ListaFavPokemons(widget._treinador)));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            ListaFavPokemons(widget._treinador)));
               },
             ),
           ],
@@ -139,5 +144,3 @@ class _BookTreinadorState extends State<BookTreinador> {
     );
   }
 }
-
-

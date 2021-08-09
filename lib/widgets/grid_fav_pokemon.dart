@@ -25,6 +25,42 @@ class _GridFavPokemonState extends State<GridFavPokemon> {
           left: 10,
           top: MediaQuery.of(context).size.height * 0.1,
           child: Card(
+            color: tipoPokemon == 'Grass'
+                ? Colors.green
+                : tipoPokemon == 'Fire'
+                    ? Colors.red
+                    : tipoPokemon == 'Water'
+                        ? Colors.blue
+                        : tipoPokemon == 'Electric'
+                            ? Colors.yellow
+                            : tipoPokemon == 'Rock'
+                                ? Colors.grey
+                                : tipoPokemon == 'Ground'
+                                    ? Colors.brown
+                                    : tipoPokemon == 'Psychic'
+                                        ? Colors.indigo
+                                        : tipoPokemon == 'Fighting'
+                                            ? Colors.orange
+                                            : tipoPokemon == 'Bug'
+                                                ? Colors.lightGreen
+                                                : tipoPokemon == 'Ghost'
+                                                    ? Colors.deepPurple
+                                                    : tipoPokemon == 'Normal'
+                                                        ? Colors.black26
+                                                        : tipoPokemon ==
+                                                                'Poison'
+                                                            ? Colors
+                                                                .deepPurpleAccent
+                                                            : tipoPokemon ==
+                                                                    'Ice'
+                                                                ? Colors
+                                                                    .lightBlueAccent
+                                                                : tipoPokemon ==
+                                                                        'Dragon'
+                                                                    ? Colors.deepPurple[
+                                                                        300]
+                                                                    : Colors
+                                                                        .pink,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15.0)),
             child: Column(
@@ -32,11 +68,16 @@ class _GridFavPokemonState extends State<GridFavPokemon> {
               children: [
                 Text(
                   nomePokemon,
-                  style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      fontSize: 24.0,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white),
                 ),
-                Text('Altura: ' + widget.pokemon.height),
-                Text('Peso: ' + widget.pokemon.weight),
-                Text('Tipos'),
+                Text('Altura: ' + widget.pokemon.height,
+                    style: TextStyle(color: Colors.white)),
+                Text('Peso: ' + widget.pokemon.weight,
+                    style: TextStyle(color: Colors.white)),
+                Text('Tipos', style: TextStyle(color: Colors.white)),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -46,7 +87,7 @@ class _GridFavPokemonState extends State<GridFavPokemon> {
                         onSelected: (b) {}),
                   ],
                 ),
-                Text('Fraquezas'),
+                Text('Fraquezas', style: TextStyle(color: Colors.white)),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -70,11 +111,10 @@ class _GridFavPokemonState extends State<GridFavPokemon> {
               height: 120.0,
               width: 120.0,
               decoration: BoxDecoration(
-                image: DecorationImage(
-                  fit: BoxFit.contain,
-                  image: NetworkImage(imagemPokemon),
-                )
-              ),
+                  image: DecorationImage(
+                fit: BoxFit.contain,
+                image: NetworkImage(imagemPokemon),
+              )),
             ),
           ),
         )

@@ -6,17 +6,14 @@ import 'package:http/http.dart' as http;
 import 'package:pokelistx/models/pokemon.dart';
 import 'package:pokelistx/models/treinador.dart';
 import 'package:pokelistx/widgets/grid_fav_pokemon.dart';
-import 'package:pokelistx/widgets/grid_pokemon.dart';
 
 class ListaFavPokemons extends StatefulWidget {
-
   final Treinador _treinador;
 
   ListaFavPokemons(this._treinador);
 
   @override
   _ListaFavPokemonsState createState() => _ListaFavPokemonsState();
-
 }
 
 class _ListaFavPokemonsState extends State<ListaFavPokemons> {
@@ -24,11 +21,16 @@ class _ListaFavPokemonsState extends State<ListaFavPokemons> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
         elevation: 0.0,
         centerTitle: true,
-        title: Text('Favdex', style: TextStyle(
-            fontWeight: FontWeight.bold
-        ),),
+        title: Text(
+          'Favdex',
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+        ),
+        iconTheme: IconThemeData(
+          color: Colors.black, //change your color here
+        ),
       ),
       body: FutureBuilder(
         future: fetchPokemonsFromAPI(),
@@ -52,7 +54,9 @@ class _ListaFavPokemonsState extends State<ListaFavPokemons> {
               break;
             case ConnectionState.done:
               return ListaFavPokemonCard(
-                pokemons: snaphot.data, treinador: widget._treinador,);
+                pokemons: snaphot.data,
+                treinador: widget._treinador,
+              );
               break;
           }
           return Text('erro desconhecido');
@@ -77,27 +81,15 @@ class ListaFavPokemonCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Iterable<Pokemon> pokemon = pokemons.where((element) =>
-        element.name.contains(treinador.favPokemon));
+    Iterable<Pokemon> pokemon = pokemons
+        .where((element) => element.name.contains(treinador.favPokemon));
     Pokemon pokemonFav = pokemon.first;
     String tipoPokemon = pokemonFav.type[0];
-    Widget returnFav = GridFavPokemon(pokemon: pokemonFav,);
+    Widget returnFav = GridFavPokemon(
+      pokemon: pokemonFav,
+    );
 
     return Container(
-      color:  tipoPokemon == 'Grass' ? Colors.green :
-      tipoPokemon == 'Fire' ? Colors.red :
-      tipoPokemon == 'Water' ? Colors.blue :
-      tipoPokemon == 'Electric' ? Colors.yellow :
-      tipoPokemon == 'Rock' ? Colors.grey :
-      tipoPokemon == 'Ground' ? Colors.brown :
-      tipoPokemon == 'Psychic' ? Colors.indigo :
-      tipoPokemon == 'Fighting' ? Colors.orange :
-      tipoPokemon == 'Bug' ? Colors.lightGreen :
-      tipoPokemon == 'Ghost' ? Colors.deepPurple :
-      tipoPokemon == 'Normal' ? Colors.black26 :
-      tipoPokemon == 'Poison' ? Colors.deepPurpleAccent :
-      tipoPokemon == 'Ice' ? Colors.lightBlueAccent :
-      tipoPokemon == 'Dragon' ? Colors.deepPurple[300] : Colors.pink,
       child: returnFav,
     );
   }

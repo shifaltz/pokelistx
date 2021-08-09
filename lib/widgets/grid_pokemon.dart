@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:pokelistx/dao/treinadores_dao.dart';
 import 'package:pokelistx/models/pokemon.dart';
 import 'package:pokelistx/models/treinador.dart';
-import 'package:pokelistx/screens/book_treinador.dart';
-import 'package:pokelistx/screens/list_fav_pokemons.dart';
 import 'package:pokelistx/screens/list_treinadores.dart';
 
 class GridPokemon extends StatefulWidget {
@@ -122,7 +120,8 @@ class _GridPokemonState extends State<GridPokemon> {
                   child: Text('Não')),
               TextButton(
                   onPressed: () {
-                    _dao.addFavPokemon(widget.pokemon.name, widget.treinador.id).then((value) => Navigator.of(context).popUntil((route) => route.isFirst));
+                    _dao.addFavPokemon(widget.pokemon.name, widget.treinador.id);
+                    Navigator.of(context).popUntil((route) => route.isFirst);
                     Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => ListaTreinadores()));
                   },
                   child: Text('Sim'))

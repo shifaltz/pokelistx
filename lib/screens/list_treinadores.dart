@@ -19,8 +19,15 @@ class ListaTreinadoresState extends State<ListaTreinadores> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,
+        iconTheme: IconThemeData(
+          color: Colors.black, //change your color here
+        ),
+        backgroundColor: Colors.white,
         centerTitle: true,
-        title: Text('Treinadores'),
+        title: Text('Treinadores', style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold
+        ),),
       ),
       body: FutureBuilder(
         future: _dao.findAll(),
